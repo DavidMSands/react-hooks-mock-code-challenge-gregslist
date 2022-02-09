@@ -35,6 +35,12 @@
       "description": "Beautiful couch",
       "image": "./images/couch.jpg",
       "location": "Bay Ridge"
+    },
+    {
+      "description": "Dog Fan",
+      "image": "https://breedingbusiness.com/wp-content/uploads/2021/02/best-dog-fans.jpg",
+      "location": "Highlands Ranch",
+      "id": 7
     }
   ]
 }
