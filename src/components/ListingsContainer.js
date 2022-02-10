@@ -2,7 +2,19 @@ import React from "react";
 import { useState } from "react/cjs/react.development";
 import ListingCard from "./ListingCard";
 
-function ListingsContainer({listings, handleFormSubmit, deleteListing, checked, handleClick, newDescription, newLocation, newImage, setNewDescription, setNewLocation, setNewImage }) {
+function ListingsContainer({ 
+  listings, 
+  handleFormSubmit, 
+  deleteListing, 
+  checked, 
+  handleClick, 
+  newDescription,
+  newLocation, 
+  newImage, 
+  setNewDescription, 
+  setNewLocation, 
+  setNewImage 
+}) {
   const [showAddListing, setShowAddListing] = useState(false)
 
   function handleShowForm() {
@@ -18,7 +30,7 @@ function ListingsContainer({listings, handleFormSubmit, deleteListing, checked, 
         <button type="submit" >Add listing</button>
       </form>
       : null
-}
+         }
       <div>
         <input type="checkbox" id="sort-location" name="scales" checked={checked} onClick={handleClick} />
         <label for="sort-location">Sort by location</label>

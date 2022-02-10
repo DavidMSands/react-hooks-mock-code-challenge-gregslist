@@ -1,11 +1,6 @@
 import React from "react";
 
-function Search({search, setSearch, listings, setFilterListing }) {
-  function handleSubmit(e) {
-    e.preventDefault();
-    const updatedListing = listings.filter(listing => listing.description.includes(search))
-    setFilterListing(updatedListing)
-  }
+function Search({search, setSearch, handleSubmit }) {
   
   return (
     <form className="searchbar" onSubmit={handleSubmit}>

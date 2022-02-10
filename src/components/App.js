@@ -12,6 +12,7 @@ function App() {
   const [newLocation, setNewLocation] = useState('')
   const listing_url = 'http://localhost:6001/listings'
 
+//initial fetch
   useEffect(() => {
     fetch(listing_url)
     .then(res => res.json())
@@ -21,10 +22,20 @@ function App() {
     })
   }, [])
 
+
+//search submit event handler
+  function handleSubmit(e) {
+    e.preventDefault();
+    const displayListings = listings.filter(listing => listing.description.toLowerCase().includes(search.toLowerCase()))
+    setFilterListing(displayListings)
+  }
+
+//sort event handler
   function handleClick() {
     setChecked(checked => !checked)
   }
 
+//delete listing event listener
   function deleteListing(id) {
     const updatedListing = filterListing.filter(listing => listing.id !== id)
     setFilterListing(updatedListing)
@@ -35,25 +46,26 @@ function App() {
     .then(data => console.log(data))
   }
 
+//sorts the listings when checkbox is checked
   useEffect(() => {
     let sortedArray = []
     if(checked) {
       function compare(a, b) {
-        if(a.location < b.location){
+        if(a.location < b.location)
         return -1
-        }
-        if(a.location > b.location) {
+        if(a.location > b.location) 
         return 1
-        }
         return 0
       }
       sortedArray = [...filterListing].sort(compare)
+      setFilterListing(sortedArray)
     } else {
-      sortedArray = listings
+      const displayListings = listings.filter(listing => listing.description.includes(search))
+      setFilterListing(displayListings)
     }
-    setFilterListing(sortedArray)
   }, [checked])
 
+//new listing form submit handler
   function handleFormSubmit(e) {
     e.preventDefault()
     const newObj = {
@@ -76,7 +88,13 @@ function App() {
 
   return (
     <div className="app">
-      <Header search={search} setSearch={setSearch} setFilterListing={setFilterListing} listings={listings} />
+      <Header 
+      search={search} 
+      setSearch={setSearch} 
+      handleSubmit={handleSubmit} 
+      setFilterListing={setFilterListing} 
+      listings={listings} />
+
       <ListingsContainer 
       listings={filterListing} 
       deleteListing={deleteListing} 
